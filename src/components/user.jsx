@@ -1,3 +1,7 @@
+//  Не смог доконца
+
+
+
 
 import { Component } from 'react'
 import { Table, Container, Row, Col } from "react-bootstrap"
@@ -5,11 +9,6 @@ import api from '../api'
 
 let allUsers = api.users.fetchAll()
 
-
-
-
-     
-        
 export default class App extends Component {
     state = {
     rows: allUsers
@@ -30,8 +29,6 @@ export default class App extends Component {
                       allUsers.length === 4
                       ? 'человека' 
                       : 'человек'
-    console.log('nnnnnn', allUsers.length)
-
     return (
         <>
             <Container className="mt-3">
@@ -47,10 +44,10 @@ export default class App extends Component {
                                 <tr>
                                     <th>Имя</th>
                                     <th>Качества</th>
-                                    <th>Првфесия</th>
-                                    <th>Встреч</th>
+                                    <th>Провфессия</th>
+                                    <th>Встретился, раз</th>
                                     <th>Оценка</th>
-                                    <th>Кнопка</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +62,7 @@ export default class App extends Component {
 
                                         <td>
                                         <button 
-                                            className="btn btn-primary btn-sm m-2" 
+                                            className="btn btn-danger btn-sm m-2" 
                                             onClick={() => this.spliceRow(index)}>
                                             DEL
                                         </button>
