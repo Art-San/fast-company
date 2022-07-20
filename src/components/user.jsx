@@ -2,9 +2,11 @@
 
 
 import React, {useState} from "react";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Table } from "react-bootstrap";
 import api from '../api';
-// let allUsers = api.users.fetchAll();
+// let allUsers = api.users.fetchAll()
+
+
 
 
 let UserTable = () => {
@@ -18,20 +20,25 @@ let UserTable = () => {
         setTable(newListUsers)
     };
 
-    let message = table.length === 2 || 
-                      table.length === 3 || 
-                      table.length === 4
-                      ? 'человека тусанут' 
-                      : 'человек тусанет'
+    let message = 
+            table.length === 2 || 
+            table.length === 3 || 
+            table.length === 4 
+            ? 'человека тусанут' 
+            : 'человек тусанет';
 
+    let header = 
+            table.length === 0 
+            ? <span className="badge bg-danger">Никто не тусанет с тобой</span> 
+            : <span className="badge bg-primary">{table.length} {message} с тобой сегодня</span>;
 
     return (
         <>
         <Container className="mt-3">
                 <Row>
-                    <Col>
-                        <h3 className='text-primary'> {table.length} {message} с тобой сегодня </h3>
-                    </Col>
+                    <div>
+                        <h1 className='text-primary'>{header}</h1>;
+                    </div>
                 </Row>
             <Table className="table">
                 <thead>
@@ -47,14 +54,21 @@ let UserTable = () => {
                 </thead>
                 <tbody>
                     {
+            
                     table.map(user => {
+                       
                         return (
                             <tr key={user._id}>
                                 <td>{user.name}</td>
-                                <td>{user.qualities._name}</td>
+
+                                <td>{user.qualities.map(job => {
+                                    return <span className="badge bg-primary m-1" key={job._id}>{job.name}</span>
+                                    
+                                })}</td>
+
                                 <td>{user.profession.name}</td>
                                 <td>{user.completedMeetings}</td>
-                                <td>{user.rate}</td>
+                                <td>{user.rate} /5</td>
                                 <td><button 
                                     className="btn btn-danger btn-sm m-2" 
                                     onClick={() => handleDelete(user._id)}
