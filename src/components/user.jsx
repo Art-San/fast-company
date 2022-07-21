@@ -35,7 +35,7 @@ let UserTable = () => {
     let header = 
             table.length === 0 
             ? <span className="badge bg-danger">Никто не тусанет с тобой</span> 
-            : <span className="badge bg-primary">{table.length} {message} с тобой сегодн</span>;
+            : <span className="badge bg-primary">{table.length} {message} с тобой сегодня</span>;
     
     // const header = () => {
     //     return table.length === 0 
